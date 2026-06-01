@@ -1,0 +1,30 @@
+You will need to create two separate configuration files: 
+one for the Primary unit and one for the Secondary unit. 
+The configurations are nearly identical, with the priority value determining which firewall acts as the active unit (higher number = higher priority).
+Configuring Active - Passive
+Before Configuring need to check both should have same model device, version and License.
+# Primary FortiGate HA Configuration
+config system ha
+    set group-name "FortiGate-HA-Cluster"
+    set mode a-p
+    set password "YourSecureHAPassword123!"
+    set hbdev "port3" 50 "port4" 50
+    set session-pickup enable
+    set override disable
+    set priority 200
+    set monitor "port1" "port2"
+------------------------------------------------------------------------------------------------
+# Secondary FortiGate HA Configuration
+config system ha
+    set group-name "FortiGate-HA-Cluster"
+    set mode a-p
+    set password "YourSecureHAPassword123!"
+    set hbdev "port3" 50 "port4" 50
+    set session-pickup enable
+    set override disable
+    set priority 100
+    set monitor "port1" "port2"
+
+The heartbeat interfaces (e.g., port3 and port4). It is best practice to use two dedicated cables for redundancy.
+Ensures that active sessions (like file transfers or phone calls) don't drop during a failover event.
+The interfaces that the HA process watches. If port1 (e.g., your WAN) goes down on the primary, it will trigger a failover.
