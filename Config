@@ -1,6 +1,7 @@
 You will need to create two separate configuration files: 
 one for the Primary unit and one for the Secondary unit. 
 The configurations are nearly identical, with the priority value determining which firewall acts as the active unit (higher number = higher priority).
+After initial configuration (assigning ip address to physical interface, routing, nat, firewall policies, security profiles.)
 Configuring Active - Passive
 Before Configuring need to check both should have same model device, version and License.
 # Primary FortiGate HA Configuration
